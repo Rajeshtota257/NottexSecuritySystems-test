@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NottEx Security Systems — CCTV & Security Solutions</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ---------------------------------------------------- */
+/* style.css content starts here (CSS Variables & Resets) */
+/* ---------------------------------------------------- */
+:root {
+  /* Colors */
+  --primary-color: #003366; /* Dark Blue */
+  --secondary-color: #ff7b00; /* Orange Accent */
+  --success-color: #008000; /* Green CTA */
+  --whatsapp-color: #25D366;
+  --call-now-color: #ff4d4d;
+  --quick-btn-color: #34b7f1;
+  --bg-light: #f7f9fc;
+  --bg-dark: #001933; /* Footer Background */
+
+  /* Spacing */
+  --section-padding-desktop: 120px 8% 80px;
+  --section-padding-mobile: 100px 5% 60px;
+
+  /* Typography */
+  --font-stack: 'Arial', sans-serif;
+}
+
+/* Base and Resets */
+body {
+  margin: 0;
+  font-family: var(--font-stack);
+  scroll-behavior: smooth;
+  background: var(--bg-light);
+  line-height: 1.6;
+}
+a:focus, button:focus, .gallery img:focus {
+  outline: 3px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+.primary-text {
+  color: var(--primary-color);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 18px 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  border-bottom: 1px solid #ddd;
+  transition: 0.4s ease;
+}
+nav.scrolled {
+  background: var(--primary-color);
+  padding: 10px 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 45px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+nav ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  transition: 0.3s;
+}
+nav.scrolled ul li a {
+  color: #fff;
+}
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--secondary-color);
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+/* SECTIONS */
+section {
+  padding: var(--section-padding-desktop);
+  min-height: 70vh;
+  text-align: center;
+}
+
+/* HOME */
+#home h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+#home h2 {
+  font-size: 22px;
+  color: #555;
+  margin-bottom: 20px;
+}
+#home p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+#home a.cta-button { /* Applied class for clarity */
+  background: var(--success-color);
+  padding: 14px 22px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.3s;
+}
+#home a.cta-button:hover {
+  background: #006400; /* Darker green on hover */
+}
+
+/* SERVICES */
+#services ul {
+  list-style: none;
+  padding: 0;
+  font-size: 20px;
+  line-height: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center list items */
+}
+#services li {
+  margin: 12px 0;
+  text-align: left;
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+.gallery img:hover { transform: scale(1.05); }
+
+/* LIGHTBOX (Accessibility improvements) */
+#lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  cursor: pointer; /* Indicate it can be closed by clicking anywhere */
+}
+#lightbox img {
+  width: 80%;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.4);
+  cursor: default; /* Remove pointer from image itself */
+}
+
+/* REVIEW SLIDER (Duplicated content for true infinite loop) */
+.review-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.review-track {
+  display: flex;
+  gap: 30px;
+  animation: slide 20s linear infinite;
+  /* Double the content width for the animation */
+  width: max-content; 
+}
+.review-track:hover {
+  animation-play-state: paused;
+}
+.review-box {
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  min-width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  flex-shrink: 0; /* Prevents boxes from shrinking */
+  text-align: left;
+}
+@keyframes slide {
+  0%{ transform:translateX(0); }
+  100%{ transform:translateX(-50%); } /* Slides exactly one set of content */
+}
+
+/* CONTACT */
+#contact p {
+  margin-bottom: 10px;
+}
+address {
+  font-style: normal; /* Override browser default */
+  margin-bottom: 20px;
+}
+
+/* GOOGLE MAP */
+.map {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  border: none; /* iframe should not have a border */
+}
+
+/* FOOTER */
+footer {
+  background: var(--bg-dark);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+.social-icons a {
+  color: white;
+  font-size: 22px;
+  margin: 0 10px;
+  text-decoration: none;
+}
+.social-icons a:hover {
+  color: var(--secondary-color);
+}
+/* FLOATING BUTTONS */
+.whatsapp-btn, .quick-btn {
+  position: fixed;
+  right: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  z-index: 999;
+  transition: transform 0.3s;
+}
+.whatsapp-btn {
+  bottom: 20px;
+  background: var(--whatsapp-color);
+  padding: 12px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.quick-btn {
+  bottom: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.quick-btn a {
+  display: block;
+  background: var(--quick-btn-color);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.quick-btn a.call-now {
+  background: var(--call-now-color);
+  border-radius: 40px;
+  padding: 12px 18px;
+  font-size: 18px;
+}
+.quick-btn a:hover, .whatsapp-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* MEDIA QUERIES */
+@media(max-width:768px){
+  nav ul { gap: 20px; }
+  section { padding: var(--section-padding-mobile); }
+  #home h1 { font-size: 28px; }
+  #home h2 { font-size: 18px; }
+  #home p { font-size: 16px; }
+  .review-box { min-width: 85vw; } /* Use viewport width for better fit */
+  .gallery img { height: 150px; }
+}
+/* ---------------------------------------------------- */
+/* style.css content ends here */
+/* ---------------------------------------------------- */
+</style>
+</head>
+
+<body>
+<header>
+  <nav id="navbar">
+    <ul id="menuList">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="home">
+    <h1>NottEx <span class="primary-text">Security Systems</span></h1>
+    <h2>CCTV | Security Alarms | Installation & AMC Support</h2>
+    <p>Reliable security solutions for homes, businesses & industries.</p>
+    <a href="upi://pay?pa=nottex@upi&pn=NottEx%20Security&am=1" class="cta-button">💳 Pay Online / UPI</a>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>📍 CCTV Installation & Maintenance</li>
+      <li>🔔 Security Alarm Systems</li>
+      <li>🛠️ Installation & On-Site Service Support</li>
+      <li>♻ AMC (Annual Maintenance Contracts)</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Installation & Product Gallery</h2>
+    <div class="gallery">
+      <img src="image1.png" alt="CCTV Installation Example" tabindex="0" onclick="openLightbox(this.src)">
+      <img src="image2.png" alt="Security Alarm System" tabindex="0" onclick="openLightbox(this.src)">
+      <img src="image3.png" alt="Professional Installation Site" tabindex="0" onclick="openLightbox(this.src)">
+      <img src="image4.png" alt="AMC Service Checkup" tabindex="0" onclick="openLightbox(this.src)">
+      <img src="image1.png" alt="CCTV Installation Example" tabindex="0" onclick="openLightbox(this.src)">
+      <img src="image2.png" alt="Security Alarm System" tabindex="0" onclick="openLightbox(this.src)">
+    </div>
+  </section>
+
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image Gallery Lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Enlarged gallery image">
+  </div>
+
+  <section id="reviews">
+    <h2>Customer Reviews ⭐⭐⭐⭐⭐</h2>
+    <div class="review-slider">
+      <div class="review-track">
+        <div class="review-box">"Excellent installation & fast support!" — Praveen</div>
+        <div class="review-box">"Quality cameras & good AMC support." — Ramesh</div>
+        <div class="review-box">"Professional and reasonable pricing." — Anusha</div>
+        <div class="review-box">"Highly recommended for home security." — Priya</div>
+        <div class="review-box">"Excellent installation & fast support!" — Praveen</div>
+        <div class="review-box">"Quality cameras & good AMC support." — Ramesh</div>
+        <div class="review-box">"Professional and reasonable pricing." — Anusha</div>
+        <div class="review-box">"Highly recommended for home security." — Priya</div>
+        </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <address>
+      <p><strong>Phone:</strong> +91 95024 24546, +91 96661 87717</p>
+      <p><strong>Email:</strong> nottex09@gmail.com</p>
+      <p><strong>Location:</strong> OU Colony, RL Nagar, Rampally</p>
+    </address>
+
+    <iframe class="map"
+      src="https://www.google.com/maps/embed?pb=!1m18..."
+      loading="lazy"
+      title="Company Location on Google Maps"> </iframe>
+  </section>
+</main>
+
+<a class="whatsapp-btn" href="https://wa.me/919502424546">
+  WhatsApp Chat
+</a>
+
+<div class="quick-btn">
+  <a href="https://wa.me/919502424546?text=Need%20CCTV%20installation">📌 CCTV Installation</a>
+  <a href="https://wa.me/919502424546?text=AMC%20Service%20pricing">🛠 AMC Quote</a>
+  <a class="call-now" href="tel:+919502424546">📞 Call Now</a>
+</div>
+
+<footer>
+  <p>© <span id="current-year">2025</span> NottEx Security Systems | All Rights Reserved</p>
+  <div class="social-icons">
+    <a href="#" aria-label="Official Website"><span aria-hidden="true">🌐</span></a>
+    
+    <a href="#" aria-label="Facebook Profile"><span aria-hidden="true">📘</span></a>
+    
+    <a href="#" aria-label="Instagram Profile"><span aria-hidden="true">📸</span></a>
+    
+    <a href="#" aria-label="Twitter/X Profile"><span aria-hidden="true">❌</span></a>
+    
+    <a href="#" aria-label="YouTube Channel"><span aria-hidden="true">▶️</span></a>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const navbar = document.getElementById("navbar");
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("nav ul li a");
+  const lightbox = document.getElementById("lightbox");
+  const galleryImages = document.querySelectorAll(".gallery img");
+
+  // 1. Sticky Nav on Scroll
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+
+  // 2. Lightbox Functions (Improved accessibility)
+  window.openLightbox = function(src) {
+    document.getElementById("lightbox-img").src = src;
+    lightbox.style.display = "flex";
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+    lightbox.focus(); // Set focus on the lightbox itself
+  }
+
+  window.closeLightbox = function() {
+    lightbox.style.display = "none";
+    document.body.style.overflow = ""; // Restore background scrolling
+  }
+
+  // Close lightbox with ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+      closeLightbox();
+    }
+  });
+  
+  // Close lightbox on click outside the image
+  lightbox.addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') {
+      closeLightbox();
+    }
+  });
+
+  // Open lightbox on Enter key for keyboard users
+  galleryImages.forEach(img => {
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(img.src);
+      }
+    });
+  });
+
+
+  // 3. Dynamic Active Link Highlight (Intersection Observer)
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px 0px -50% 0px", // 50% of viewport required to be visible
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Remove active class from all links
+        navLinks.forEach(link => link.classList.remove("active"));
+
+        // Add active class to the corresponding link
+        const targetId = entry.target.id;
+        const activeLink = document.querySelector(`nav ul li a[href="#${targetId}"]`);
+        if (activeLink) {
+          activeLink.classList.add("active");
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe each section
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+  // 4. Update Footer Year
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+});
+</script>
+</body>
+</html>
