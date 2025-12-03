@@ -4,503 +4,434 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>NottEx Security Systems — CCTV & Security Solutions</title>
-<link rel="stylesheet" href="style.css">
+
+<!-- Basic security & SEO niceties -->
+<meta name="description" content="NottEx Security Systems — CCTV installation, alarms, AMC and 24/7 support.">
+<link rel="preload" href="Kalyan Desetti.png" as="image">
+<link rel="preload" href="Lenin Desetti.png" as="image">
+
 <style>
-/* ---------------------------------------------------- */
-/* style.css content starts here (CSS Variables & Resets) */
-/* ---------------------------------------------------- */
-:root {
-  /* Colors */
-  --primary-color: #003366; /* Dark Blue */
-  --secondary-color: #ff7b00; /* Orange Accent */
-  --success-color: #008000; /* Green CTA */
-  --whatsapp-color: #25D366;
-  --call-now-color: #ff4d4d;
-  --quick-btn-color: #34b7f1;
-  --bg-light: #f7f9fc;
-  --bg-dark: #001933; /* Footer Background */
+  /* =========================
+     Variables & base resets
+     ========================= */
+  :root{
+    --primary:#003366;
+    --accent:#ff7b00;
+    --success:#008000;
+    --bg:#f7f9fc;
+    --nav-height:68px;
+    --max-width:1200px;
+    --glass: rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;line-height:1.5;color:#222}
+  a{color:inherit}
+  img{display:block;max-width:100%;height:auto}
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-  /* Spacing */
-  --section-padding-desktop: 120px 8% 80px;
-  --section-padding-mobile: 100px 5% 60px;
+  /* =========================
+     NAV
+     ========================= */
+  header{position:fixed;left:0;right:0;top:0;z-index:1200}
+  nav{height:var(--nav-height);display:flex;align-items:center;justify-content:center;background:#fff;border-bottom:1px solid #e4e4e4;transition:box-shadow .28s,background .28s}
+  nav.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.12);background:var(--primary)}
+  nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+  nav a{display:inline-block;padding:10px 6px;text-decoration:none;font-weight:700;color:#111}
+  nav.scrolled a{color:#fff}
+  nav a.active, nav a:hover{color:var(--accent);border-bottom:3px solid var(--accent);padding-bottom:7px}
 
-  /* Typography */
-  --font-stack: 'Arial', sans-serif;
-}
+  /* skip link */
+  .skip-link{position:absolute;left:8px;top:8px;background:#000;color:#fff;padding:6px 10px;border-radius:6px;z-index:1300;transform:translateY(-120%);transition:transform .18s}
+  .skip-link:focus{transform:translateY(0)}
 
-/* Base and Resets */
-body {
-  margin: 0;
-  font-family: var(--font-stack);
-  scroll-behavior: smooth;
-  background: var(--bg-light);
-  line-height: 1.6;
-}
-a:focus, button:focus, .gallery img:focus {
-  outline: 3px solid var(--secondary-color);
-  outline-offset: 2px;
-}
-h2 {
-  font-size: 28px;
-  margin-bottom: 30px;
-  color: var(--primary-color);
-}
-.primary-text {
-  color: var(--primary-color);
-}
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
+/* =========================
+   HOME — Dark Premium Banner
+   ========================= */
+  main{padding-top:calc(var(--nav-height) + 12px)}
+  #home{
+    max-width:var(--max-width);
+    margin:28px auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:36px;
+    border-radius:12px;
+    /* Dark premium banner */
+    background:
+      linear-gradient(180deg, rgba(2,10,23,0.92) 0%, rgba(0,22,40,0.88) 100%),
+      radial-gradient(1200px 300px at 10% 10%, rgba(255,255,255,0.03), transparent 10%),
+      radial-gradient(800px 250px at 90% 90%, rgba(255,255,255,0.02), transparent 10%);
+    color:#fff;
+    box-shadow:0 18px 50px rgba(2,10,23,0.35);
+    border:1px solid rgba(255,255,255,0.04);
+    align-items:center;
+  }
 
-/* NAVBAR */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #ffffff;
-  padding: 18px 0;
-  display: flex;
-  justify-content: center;
-  z-index: 1000;
-  border-bottom: 1px solid #ddd;
-  transition: 0.4s ease;
-}
-nav.scrolled {
-  background: var(--primary-color);
-  padding: 10px 0;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 45px;
-  margin: 0;
-  padding: 0;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-nav ul li a {
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 600;
-  color: #000;
-  transition: 0.3s;
-}
-nav.scrolled ul li a {
-  color: #fff;
-}
-nav ul li a:hover,
-nav ul li a.active {
-  color: var(--secondary-color);
-  padding-bottom: 4px;
-  border-bottom: 2px solid var(--secondary-color);
-}
+  /* Avatar / profile cards */
+  .avatar-btn{
+    width:150px;height:150px;border-radius:50%;overflow:hidden;border:4px solid rgba(255,255,255,0.14);
+    background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+    display:inline-grid;place-items:center;cursor:pointer;
+    box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    transition:transform .45s cubic-bezier(.2,.9,.3,1), box-shadow .35s;
+    flex-shrink:0;
+  }
+  .avatar-btn img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+  .avatar-btn:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 30px 60px rgba(0,0,0,0.45)}
+  .avatar-btn:hover img{transform:scale(1.06) rotate(-1deg)}
+  .avatar-btn:focus{outline:3px solid rgba(255,123,0,0.18);outline-offset:6px}
 
-/* SECTIONS */
-section {
-  padding: var(--section-padding-desktop);
-  min-height: 70vh;
-  text-align: center;
-}
+  /* Center content */
+  .home-center{flex:1 1 560px;max-width:640px;text-align:center;padding:6px 18px}
+  .home-center h1{font-size:34px;margin:8px 0 6px;letter-spacing:0.2px}
+  .home-center .primary-text{color:var(--accent);font-weight:900}
+  .home-center h2{font-size:18px;color:#d8e9ff;margin:8px 0 14px;font-weight:600}
+  .home-center p{color:rgba(255,255,255,0.86);margin:0 0 18px}
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:800;box-shadow:0 8px 20px rgba(255,123,0,0.12);transition:transform .18s}
+  .cta:hover{transform:translateY(-3px)}
+  .secondary{background:transparent;color:#fff;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.12)}
 
-/* HOME */
-#home h1 {
-  font-size: 38px;
-  margin-bottom: 10px;
-}
-#home h2 {
-  font-size: 22px;
-  color: #555;
-  margin-bottom: 20px;
-}
-#home p {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-#home a.cta-button { /* Applied class for clarity */
-  background: var(--success-color);
-  padding: 14px 22px;
-  border-radius: 10px;
-  color: white;
-  font-weight: 700;
-  text-decoration: none;
-  display: inline-block;
-  transition: background 0.3s;
-}
-#home a.cta-button:hover {
-  background: #006400; /* Darker green on hover */
-}
+  /* small badges under center */
+  .home-badges{display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+  .badge{background:rgba(255,255,255,0.06);padding:6px 10px;border-radius:999px;font-weight:700;color:#e6f3ff;font-size:13px}
 
-/* SERVICES */
-#services ul {
-  list-style: none;
-  padding: 0;
-  font-size: 20px;
-  line-height: 36px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center list items */
-}
-#services li {
-  margin: 12px 0;
-  text-align: left;
-}
+  /* =========================
+     MODAL (founder / gallery)
+     ========================= */
+  .modal {
+    position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+    background:rgba(2,8,16,0.68);z-index:1500;padding:20px;
+  }
+  .modal[aria-hidden="false"]{display:flex}
+  .modal-card{
+    width:100%;max-width:920px;border-radius:12px;background:#fff;overflow:hidden;
+    display:grid;grid-template-columns:360px 1fr;gap:0;box-shadow:0 20px 60px rgba(2,10,23,0.45)
+  }
+  .modal-media{background:#0b1b2a;display:flex;align-items:center;justify-content:center;padding:18px}
+  .modal-media img{width:100%;height:auto;max-height:640px;object-fit:cover;border-radius:6px}
+  .modal-body{padding:20px;display:flex;flex-direction:column;gap:10px}
+  .modal-title{font-size:20px;font-weight:800;color:#072033}
+  .modal-role{font-size:14px;color:#444}
+  .modal-bio{color:#333;font-size:15px;line-height:1.45;margin-top:8px}
+  .modal-actions{margin-top:auto;display:flex;gap:10px}
+  .action-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;text-decoration:none;font-weight:700}
+  .action-call{background:linear-gradient(90deg,#ff4d4d,#ff7b00);color:#fff}
+  .action-wa{background:#25D366;color:#fff}
+  .action-mail{background:#0b74da;color:#fff}
 
-/* GALLERY */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-.gallery img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-  transition: 0.3s;
-}
-.gallery img:hover { transform: scale(1.05); }
+  /* close */
+  .modal-close{position:absolute;right:18px;top:18px;background:transparent;border:none;font-size:22px;color:#fff;cursor:pointer}
 
-/* LIGHTBOX (Accessibility improvements) */
-#lightbox {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  cursor: pointer; /* Indicate it can be closed by clicking anywhere */
-}
-#lightbox img {
-  width: 80%;
-  max-width: 900px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.4);
-  cursor: default; /* Remove pointer from image itself */
-}
+  /* =========================
+     Gallery / rest of page basics (kept lightweight)
+     ========================= */
+  .section{max-width:var(--max-width);margin:28px auto;padding:0 20px}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+  .gallery img{height:160px;object-fit:cover;border-radius:10px;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.12)}
+  footer{background:#001933;color:#fff;padding:28px;text-align:center;border-top:1px solid rgba(255,255,255,0.02)}
 
-/* REVIEW SLIDER (Duplicated content for true infinite loop) */
-.review-slider {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-.review-track {
-  display: flex;
-  gap: 30px;
-  animation: slide 20s linear infinite;
-  /* Double the content width for the animation */
-  width: max-content; 
-}
-.review-track:hover {
-  animation-play-state: paused;
-}
-.review-box {
-  background: #fff;
-  padding: 22px;
-  border-radius: 12px;
-  min-width: 300px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  flex-shrink: 0; /* Prevents boxes from shrinking */
-  text-align: left;
-}
-@keyframes slide {
-  0%{ transform:translateX(0); }
-  100%{ transform:translateX(-50%); } /* Slides exactly one set of content */
-}
+  /* Floating WhatsApp CTA with pulse */
+  .whatsapp-fab{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;padding:12px 14px;border-radius:999px;font-weight:800;box-shadow:0 12px 30px rgba(37,211,102,.18);z-index:1400}
+  .whatsapp-fab::after{content:'';position:absolute;inset:auto;right:-6px;bottom:-6px;width:48px;height:48px;border-radius:50%;background:rgba(37,211,102,0.15);animation:pulse 2.6s infinite}
 
-/* CONTACT */
-#contact p {
-  margin-bottom: 10px;
-}
-address {
-  font-style: normal; /* Override browser default */
-  margin-bottom: 20px;
-}
+  @keyframes pulse{0%{transform:scale(.9);opacity:1}70%{transform:scale(1.6);opacity:0}100%{opacity:0}}
 
-/* GOOGLE MAP */
-.map {
-  width: 100%;
-  height: 300px;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-  border: none; /* iframe should not have a border */
-}
+  /* Responsive */
+  @media(max-width:920px){
+    .modal-card{grid-template-columns:1fr}
+    #home{padding:28px;gap:14px}
+    .avatar-btn{width:120px;height:120px}
+    .home-center{max-width:520px}
+  }
+  @media(max-width:680px){
+    #home{flex-direction:column;padding:24px}
+    .home-center{order:2}
+    .avatar-btn{order:1}
+    .avatar-btn:nth-of-type(2){order:3}
+    .avatar-btn{width:110px;height:110px}
+  }
 
-/* FOOTER */
-footer {
-  background: var(--bg-dark);
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-}
-.social-icons a {
-  color: white;
-  font-size: 22px;
-  margin: 0 10px;
-  text-decoration: none;
-}
-.social-icons a:hover {
-  color: var(--secondary-color);
-}
-/* FLOATING BUTTONS */
-.whatsapp-btn, .quick-btn {
-  position: fixed;
-  right: 20px;
-  text-decoration: none;
-  color: white;
-  font-weight: 700;
-  z-index: 999;
-  transition: transform 0.3s;
-}
-.whatsapp-btn {
-  bottom: 20px;
-  background: var(--whatsapp-color);
-  padding: 12px 20px;
-  border-radius: 50px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-.quick-btn {
-  bottom: 90px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.quick-btn a {
-  display: block;
-  background: var(--quick-btn-color);
-  color: white;
-  padding: 10px 14px;
-  border-radius: 25px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-.quick-btn a.call-now {
-  background: var(--call-now-color);
-  border-radius: 40px;
-  padding: 12px 18px;
-  font-size: 18px;
-}
-.quick-btn a:hover, .whatsapp-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* MEDIA QUERIES */
-@media(max-width:768px){
-  nav ul { gap: 20px; }
-  section { padding: var(--section-padding-mobile); }
-  #home h1 { font-size: 28px; }
-  #home h2 { font-size: 18px; }
-  #home p { font-size: 16px; }
-  .review-box { min-width: 85vw; } /* Use viewport width for better fit */
-  .gallery img { height: 150px; }
-}
-/* ---------------------------------------------------- */
-/* style.css content ends here */
-/* ---------------------------------------------------- */
+  /* Respect user's reduced motion preference */
+  @media (prefers-reduced-motion: reduce){
+    .avatar-btn, .avatar-btn img, .modal-card, nav{transition:none;animation:none}
+  }
 </style>
 </head>
-
 <body>
-<header>
-  <nav id="navbar">
-    <ul id="menuList">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-<main>
-  <section id="home">
-    <h1>NottEx <span class="primary-text">Security Systems</span></h1>
-    <h2>CCTV | Security Alarms | Installation & AMC Support</h2>
-    <p>Reliable security solutions for homes, businesses & industries.</p>
-    <a href="upi://pay?pa=nottex@upi&pn=NottEx%20Security&am=1" class="cta-button">💳 Pay Online / UPI</a>
-  </section>
+  <header>
+    <nav id="navbar" aria-label="Main navigation">
+      <ul id="menuList">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#clients">Clients</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <section id="services">
-    <h2>Our Services</h2>
-    <ul>
-      <li>📍 CCTV Installation & Maintenance</li>
-      <li>🔔 Security Alarm Systems</li>
-      <li>🛠️ Installation & On-Site Service Support</li>
-      <li>♻ AMC (Annual Maintenance Contracts)</li>
-    </ul>
-  </section>
+  <main id="main-content">
+    <!-- HOME: Left Kalyan — Center Content — Right Lenin (Dark premium banner) -->
+    <section id="home" aria-labelledby="home-heading">
+      <!-- Kalyan (left) -->
+      <button class="avatar-btn" id="kalyan-btn" aria-label="Kalyan Desetti — Technical Engineer and Founder" data-name="Kalyan Desetti" data-role="Technical Engineer & Founder" data-img="Kalyan Desetti.png" data-bio="Kalyan leads engineering and implementation efforts at NottEx with expertise in CCTV integration, planning and on-site deployments." title="Open Kalyan profile">
+        <img src="Kalyan Desetti.png" alt="Kalyan Desetti" loading="lazy" width="150" height="150">
+      </button>
 
-  <section id="gallery">
-    <h2>Installation & Product Gallery</h2>
-    <div class="gallery">
-      <img src="image1.png" alt="CCTV Installation Example" tabindex="0" onclick="openLightbox(this.src)">
-      <img src="image2.png" alt="Security Alarm System" tabindex="0" onclick="openLightbox(this.src)">
-      <img src="image3.png" alt="Professional Installation Site" tabindex="0" onclick="openLightbox(this.src)">
-      <img src="image4.png" alt="AMC Service Checkup" tabindex="0" onclick="openLightbox(this.src)">
-      <img src="image1.png" alt="CCTV Installation Example" tabindex="0" onclick="openLightbox(this.src)">
-      <img src="image2.png" alt="Security Alarm System" tabindex="0" onclick="openLightbox(this.src)">
-    </div>
-  </section>
+      <!-- Center content -->
+      <div class="home-center">
+        <h1 id="home-heading">NottEx <span class="primary-text">Security Systems</span></h1>
+        <h2>CCTV | Security Alarms | Installation & AMC Support</h2>
+        <p>Reliable security solutions for homes, businesses & industries. Professional installation, 24/7 support and yearly AMC plans.</p>
 
-  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image Gallery Lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Enlarged gallery image">
-  </div>
-
-  <section id="reviews">
-    <h2>Customer Reviews ⭐⭐⭐⭐⭐</h2>
-    <div class="review-slider">
-      <div class="review-track">
-        <div class="review-box">"Excellent installation & fast support!" — Praveen</div>
-        <div class="review-box">"Quality cameras & good AMC support." — Ramesh</div>
-        <div class="review-box">"Professional and reasonable pricing." — Anusha</div>
-        <div class="review-box">"Highly recommended for home security." — Priya</div>
-        <div class="review-box">"Excellent installation & fast support!" — Praveen</div>
-        <div class="review-box">"Quality cameras & good AMC support." — Ramesh</div>
-        <div class="review-box">"Professional and reasonable pricing." — Anusha</div>
-        <div class="review-box">"Highly recommended for home security." — Priya</div>
+        <div class="btn-row" role="group" aria-label="Primary actions">
+          <a class="cta" href="upi://pay?pa=nottex@upi&pn=NottEx%20Security&am=1" aria-label="Pay Online / UPI">💳 Pay Online / UPI</a>
+          <a class="secondary" href="https://wa.me/919502424546" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬 Chat on WhatsApp</a>
         </div>
+
+        <div class="home-badges" aria-hidden="true">
+          <span class="badge">🛡 Trusted by homes</span>
+          <span class="badge">🎥 4K CCTV options</span>
+          <span class="badge">🕑 24/7 Support</span>
+        </div>
+      </div>
+
+      <!-- Lenin (right) -->
+      <button class="avatar-btn" id="lenin-btn" aria-label="Lenin Desetti — Technical Engineer and Co-Founder" data-name="Lenin Desetti" data-role="Technical Engineer & Co-Founder" data-img="Lenin Desetti.png" data-bio="Lenin focuses on systems and network design, ensuring secure, resilient and well-monitored installations for clients." title="Open Lenin profile">
+        <img src="Lenin Desetti.png" alt="Lenin Desetti" loading="lazy" width="150" height="150">
+      </button>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section" aria-labelledby="services-heading">
+      <h2 id="services-heading">Our Services</h2>
+      <ul>
+        <li>📍 CCTV Installation & Maintenance</li>
+        <li>🔔 Security Alarm Systems</li>
+        <li>🛠️ Installation & On-Site Service Support</li>
+        <li>♻ AMC (Annual Maintenance Contracts)</li>
+      </ul>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section" aria-labelledby="gallery-heading">
+      <h2 id="gallery-heading">Installation & Product Gallery</h2>
+      <div class="gallery" role="list">
+        <img src="image1.png" alt="CCTV Installation Example" tabindex="0" loading="lazy" onclick="openImageModal(this.src,this.alt)">
+        <img src="image2.png" alt="Security Alarm System" tabindex="0" loading="lazy" onclick="openImageModal(this.src,this.alt)">
+        <img src="image3.png" alt="Professional Installation Site" tabindex="0" loading="lazy" onclick="openImageModal(this.src,this.alt)">
+        <img src="image4.png" alt="AMC Service Checkup" tabindex="0" loading="lazy" onclick="openImageModal(this.src,this.alt)">
+        <img src="image1.png" alt="CCTV Installation Example" tabindex="0" loading="lazy" onclick="openImageModal(this.src,this.alt)">
+        <img src="image2.png" alt="Security Alarm System" tabindex="0" loading="lazy" onclick="openImageModal(this.src,this.alt)">
+      </div>
+    </section>
+
+    <!-- Modal: used for both founder profiles and gallery images -->
+    <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-label="Profile or Image dialog">
+      <button class="modal-close" id="modal-close" aria-label="Close dialog">✕</button>
+      <div class="modal-card" role="document">
+        <div class="modal-media" id="modal-media">
+          <!-- image inserted dynamically -->
+          <img id="modal-img" src="" alt="">
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="modal-title" id="modal-title">Name</div>
+            <div class="modal-role" id="modal-role">Role</div>
+            <div class="modal-bio" id="modal-bio">Short bio or caption goes here.</div>
+          </div>
+          <div class="modal-actions" id="modal-actions">
+            <a id="action-call" class="action-btn action-call" href="#" role="button" rel="noopener noreferrer">📞 Call</a>
+            <a id="action-wa" class="action-btn action-wa" href="#" role="button" rel="noopener noreferrer">💬 WhatsApp</a>
+            <a id="action-mail" class="action-btn action-mail" href="#" role="button" rel="noopener noreferrer">✉️ Email</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <address>
-      <p><strong>Phone:</strong> +91 95024 24546, +91 96661 87717</p>
-      <p><strong>Email:</strong> nottex09@gmail.com</p>
-      <p><strong>Location:</strong> OU Colony, RL Nagar, Rampally</p>
-    </address>
+    <!-- REVIEWS -->
+    <section id="reviews" class="section" aria-labelledby="reviews-heading">
+      <h2 id="reviews-heading">Customer Reviews ⭐⭐⭐⭐⭐</h2>
+      <div class="review-slider">
+        <div class="review-track" aria-hidden="true">
+          <div class="review-box">"Excellent installation & fast support!" — Praveen</div>
+          <div class="review-box">"Quality cameras & good AMC support." — Ramesh</div>
+          <div class="review-box">"Professional and reasonable pricing." — Anusha</div>
+        </div>
+      </div>
+    </section>
 
-    <iframe class="map"
-      src="https://www.google.com/maps/embed?pb=!1m18..."
-      loading="lazy"
-      title="Company Location on Google Maps"> </iframe>
-  </section>
-</main>
+    <!-- CONTACT -->
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact Us</h2>
+      <address>
+        <p><strong>Phone:</strong> +91 95024 24546, +91 96661 87717</p>
+        <p><strong>Email:</strong> <a href="mailto:nottex09@gmail.com">nottex09@gmail.com</a></p>
+        <p><strong>Location:</strong> OU Colony, RL Nagar, Rampally, <strong>Hyderabad, Telangana</strong></p>
+      </address>
+      <div class="map-container" style="max-width:700px;margin-top:12px">
+        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18..." loading="lazy" title="Company Location on Google Maps" style="width:100%;height:250px;border-radius:8px;border:0;box-shadow:0 10px 24px rgba(0,0,0,0.12)"></iframe>
+      </div>
+    </section>
 
-<a class="whatsapp-btn" href="https://wa.me/919502424546">
-  WhatsApp Chat
-</a>
+    <!-- CLIENTS -->
+    <section id="clients" class="section" aria-labelledby="clients-heading">
+      <h2 id="clients-heading">Our Valued Clients</h2>
+      <div class="clients-grid" style="display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap">
+        <div class="client-logo"><span style="font-size:36px">🛒</span><div style="font-weight:800">D-Mart</div></div>
+        <div class="client-logo"><span style="font-size:36px">🏢</span><div style="font-weight:800">Company B</div></div>
+      </div>
+    </section>
 
-<div class="quick-btn">
-  <a href="https://wa.me/919502424546?text=Need%20CCTV%20installation">📌 CCTV Installation</a>
-  <a href="https://wa.me/919502424546?text=AMC%20Service%20pricing">🛠 AMC Quote</a>
-  <a class="call-now" href="tel:+919502424546">📞 Call Now</a>
-</div>
+  </main>
 
-<footer>
-  <p>© <span id="current-year">2025</span> NottEx Security Systems | All Rights Reserved</p>
-  <div class="social-icons">
-    <a href="#" aria-label="Official Website"><span aria-hidden="true">🌐</span></a>
-    
-    <a href="#" aria-label="Facebook Profile"><span aria-hidden="true">📘</span></a>
-    
-    <a href="#" aria-label="Instagram Profile"><span aria-hidden="true">📸</span></a>
-    
-    <a href="#" aria-label="Twitter/X Profile"><span aria-hidden="true">❌</span></a>
-    
-    <a href="#" aria-label="YouTube Channel"><span aria-hidden="true">▶️</span></a>
-  </div>
-</footer>
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp-fab" href="https://wa.me/919502424546" rel="noopener noreferrer">💬 WhatsApp</a>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <p>© <span id="current-year">2025</span> NottEx Security Systems | All Rights Reserved</p>
+    <div style="margin-top:8px">
+      <a href="#" rel="noopener noreferrer" style="margin-right:8px">🌐</a>
+      <a href="#" rel="noopener noreferrer" style="margin-right:8px">📘</a>
+      <a href="#" rel="noopener noreferrer">📸</a>
+    </div>
+  </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const navbar = document.getElementById("navbar");
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll("nav ul li a");
-  const lightbox = document.getElementById("lightbox");
-  const galleryImages = document.querySelectorAll(".gallery img");
+/* =========================
+   Utilities & state
+   ========================= */
+(function(){
+  const navbar = document.getElementById('navbar');
+  const kalyanBtn = document.getElementById('kalyan-btn');
+  const leninBtn  = document.getElementById('lenin-btn');
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalTitle = document.getElementById('modal-title');
+  const modalRole = document.getElementById('modal-role');
+  const modalBio = document.getElementById('modal-bio');
+  const actionCall = document.getElementById('action-call');
+  const actionWa = document.getElementById('action-wa');
+  const actionMail = document.getElementById('action-mail');
+  const modalClose = document.getElementById('modal-close');
 
-  // 1. Sticky Nav on Scroll
-  window.addEventListener("scroll", () => {
-    navbar.classList.toggle("scrolled", window.scrollY > 50);
-  });
+  // Sticky navigation
+  function onScroll() {
+    navbar.classList.toggle('scrolled', window.scrollY > 48);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
 
-  // 2. Lightbox Functions (Improved accessibility)
-  window.openLightbox = function(src) {
-    document.getElementById("lightbox-img").src = src;
-    lightbox.style.display = "flex";
-    document.body.style.overflow = "hidden"; // Prevent background scrolling
-    lightbox.focus(); // Set focus on the lightbox itself
+  // Open modal helper
+  function openProfileModal({img, name, role, bio, phone, wa, mail}) {
+    modalImg.src = img;
+    modalImg.alt = name;
+    modalTitle.textContent = name;
+    modalRole.textContent = role;
+    modalBio.textContent = bio || '';
+    // actions (fallback to company contact if not provided)
+    const tel = phone || '+919502424546';
+    const waLink = wa || `https://wa.me/919502424546?text=Hi%20${encodeURIComponent(name)}`;
+    const mailto = mail || 'mailto:nottex09@gmail.com';
+    actionCall.href = `tel:${tel}`;
+    actionCall.setAttribute('aria-label', 'Call ' + name);
+    actionWa.href = waLink;
+    actionMail.href = mailto;
+    // show modal
+    modal.setAttribute('aria-hidden','false');
+    // trap focus on modal for accessibility (simple)
+    modalClose.focus();
+    document.body.style.overflow = 'hidden';
   }
 
-  window.closeLightbox = function() {
-    lightbox.style.display = "none";
-    document.body.style.overflow = ""; // Restore background scrolling
+  function closeModal(){
+    modal.setAttribute('aria-hidden','true');
+    modalImg.src = '';
+    modalTitle.textContent = '';
+    modalRole.textContent = '';
+    modalBio.textContent = '';
+    document.body.style.overflow = '';
   }
 
-  // Close lightbox with ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-      closeLightbox();
-    }
-  });
-  
-  // Close lightbox on click outside the image
-  lightbox.addEventListener('click', (e) => {
-    if (e.target.id === 'lightbox') {
-      closeLightbox();
-    }
-  });
-
-  // Open lightbox on Enter key for keyboard users
-  galleryImages.forEach(img => {
-    img.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLightbox(img.src);
-      }
+  // Wire founder buttons to open profile modal (with data attributes)
+  [kalyanBtn, leninBtn].forEach(btn=>{
+    btn.addEventListener('click',()=> {
+      openProfileModal({
+        img: btn.dataset.img,
+        name: btn.dataset.name,
+        role: btn.dataset.role,
+        bio: btn.dataset.bio
+      });
+    });
+    btn.addEventListener('keydown',(e)=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); btn.click(); }
     });
   });
 
-
-  // 3. Dynamic Active Link Highlight (Intersection Observer)
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px 0px -50% 0px", // 50% of viewport required to be visible
-    threshold: 0
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Remove active class from all links
-        navLinks.forEach(link => link.classList.remove("active"));
-
-        // Add active class to the corresponding link
-        const targetId = entry.target.id;
-        const activeLink = document.querySelector(`nav ul li a[href="#${targetId}"]`);
-        if (activeLink) {
-          activeLink.classList.add("active");
-        }
-      }
+  // Gallery images open modal as image-only (reuse modal layout)
+  document.querySelectorAll('.gallery img').forEach(img=>{
+    img.addEventListener('click', ()=> {
+      openProfileModal({
+        img: img.src,
+        name: img.alt || 'Image',
+        role: '',
+        bio: ''
+      });
+      // hide actions for pure images
+      actionCall.style.display = actionWa.style.display = actionMail.style.display = 'none';
     });
-  }, observerOptions);
-
-  // Observe each section
-  sections.forEach(section => {
-    observer.observe(section);
+    img.addEventListener('keydown',(e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); img.click(); } });
   });
 
-  // 4. Update Footer Year
+  // modal close handlers
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+  });
+
+  // Restore actions visibility on modal open for founder profiles:
+  const originalOpenProfileModal = openProfileModal;
+  window.openProfileModal = openProfileModal; // expose if needed
+
+  // Intersection observer to toggle active nav link
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        navLinks.forEach(a=>a.classList.remove('active'));
+        const id = en.target.id;
+        const target = document.querySelector(`nav a[href="#${id}"]`);
+        if(target) target.classList.add('active');
+      }
+    });
+  }, {root:null, rootMargin:'0px 0px -45% 0px', threshold:0});
+  sections.forEach(s=>io.observe(s));
+
+  // Update footer year
   document.getElementById('current-year').textContent = new Date().getFullYear();
-});
+
+  // Optional: small entrance animations on load (respect reduced motion)
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    // slide-in left/right and fade for center
+    const k = kalyanBtn, l = leninBtn, c = document.querySelector('.home-center');
+    k.style.transform = 'translateX(-40px)'; k.style.opacity = '0';
+    l.style.transform = 'translateX(40px)'; l.style.opacity = '0';
+    c.style.transform = 'translateY(18px)'; c.style.opacity = '0';
+    setTimeout(()=>{ k.style.transition='transform .9s cubic-bezier(.2,.9,.3,1),opacity .9s'; k.style.transform='translateX(0)'; k.style.opacity='1'; }, 200);
+    setTimeout(()=>{ l.style.transition='transform .9s cubic-bezier(.2,.9,.3,1),opacity .9s'; l.style.transform='translateX(0)'; l.style.opacity='1'; }, 400);
+    setTimeout(()=>{ c.style.transition='transform .9s cubic-bezier(.2,.9,.3,1),opacity .9s'; c.style.transform='translateY(0)'; c.style.opacity='1'; }, 300);
+  }
+})();
 </script>
 </body>
 </html>
